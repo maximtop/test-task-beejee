@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import Tasks from '../Tasks';
+import Header from '../Header';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,9 +11,7 @@ class App extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col">
-            <h1>Test task for BeeJee</h1>
-          </div>
+          <Header />
         </div>
         <Tasks tasks={tasks} />
       </div>

@@ -7,8 +7,6 @@ export default class Task extends Component {
         id, username, email, text,
       },
     } = this.props;
-    console.log(this.props);
-    console.log(id);
     return (
       <div className="row">
         <div className="col">
