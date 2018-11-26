@@ -24,20 +24,30 @@ export default class Tasks extends Component {
     const tasksToShow = tasks.slice(offset * pageDisplayed, (offset + 1) * pageDisplayed);
     const pageCount = tasks.length / 3;
     return (
-      <div className="col">
-        {this.renderTasks(tasksToShow)}
-        <ReactPaginate
-          previousLabel="prev"
-          nextLabel="next"
-          breakLabel="..."
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={pageDisplayed}
-          onPageChange={this.handlePageClick}
-          containerClassName="pagination"
-          subContainerClassName="pages pagination"
-          activeClassName="active"
-        />
+      <div className="row">
+        <div className="col">
+          {this.renderTasks(tasksToShow)}
+          <nav aria-label="Pagination">
+            <ReactPaginate
+              previousLabel="prev"
+              nextLabel="next"
+              breakLabel="..."
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={pageDisplayed}
+              onPageChange={this.handlePageClick}
+              containerClassName="pagination justify-content-center"
+              activeClassName="active"
+              disabledClassName="disabled"
+              pageClassName="page-item"
+              pageLinkClassName="page-link"
+              previousClassName="page-item"
+              nextClassName="page-item"
+              previousLinkClassName="page-link"
+              nextLinkClassName="page-link"
+            />
+          </nav>
+        </div>
       </div>
     );
   }
