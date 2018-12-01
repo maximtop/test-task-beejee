@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Form from 'react-bootstrap/lib/Form';
+import store from '../../Store/TasksStore';
 
 import './styles.css';
 
 export default class NewTask extends Component {
   state = {
-    username: '',
-    email: '',
-    taskDescription: '',
+    username: 'maxim',
+    email: 'maximtop@gmail.com',
+    text: 'test',
     image: '',
-
   };
 
   handleChange = (event) => {
+    const { files, id } = event.target;
+
+    // TODO handle image size, resize if size is bigger than expected
+    if (id === 'image' && files) {
+      this.setState({
+        [id]: files[0],
+      });
+      return;
+    }
+
     this.setState({
       [event.target.id]: event.target.value,
     });
@@ -21,21 +31,36 @@ export default class NewTask extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { createTask } = store;
+    createTask(this.state);
+    this.setState(state => ({
+      ...state,
+      username: '',
+      email: '',
+      text: '',
+      image: '',
+    }));
   };
 
   validateForm() {
-    const { email, username, taskDescription } = this.state;
+    const {
+      email,
+      username,
+      text,
+      image,
+    } = this.state;
+
     return username.length > 0
       && email.length > 0
-      && taskDescription.length > 0;
+      && text.length > 0
+      && image;
   }
 
   render() {
     const {
       email,
-      taskDescription,
+      text,
       username,
-      image,
     } = this.state;
 
     return (
@@ -60,19 +85,18 @@ export default class NewTask extends Component {
               type="email"
             />
           </Form.Group>
-          <Form.Group controlId="taskDescription">
+          <Form.Group controlId="text">
             <Form.Label>Task description</Form.Label>
             <Form.Control
               as="textarea"
               rows="4"
               onChange={this.handleChange}
-              value={taskDescription}
+              value={text}
             />
           </Form.Group>
           <Form.Group controlId="image" size="large">
             <Form.Label>Image</Form.Label>
             <Form.Control
-              value={image}
               onChange={this.handleChange}
               type="file"
             />
