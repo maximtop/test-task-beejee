@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import ReactPaginate from 'react-paginate';
+import Button from 'react-bootstrap/lib/Button';
+import { Link } from 'react-router-dom';
 import Task from '../Task';
 
 export default class Tasks extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      offset: 0,
-      pageDisplayed: 3,
-    };
-  }
+  state = {
+    offset: 0,
+    pageDisplayed: 3,
+  };
 
-  renderTasks = tasks => tasks.map(task => <Task task={task} key={task.id}/>);
+  renderTasks = tasks => tasks.map(task => <Task task={task} key={task.id} />);
 
   handlePageClick = (data) => {
     const { selected } = data;
@@ -26,6 +25,12 @@ export default class Tasks extends Component {
     return (
       <div className="row">
         <div className="col">
+          <div className="row">
+            <div className="col d-flex align-items-center">
+              <h1>Tasks</h1>
+              <Link to="/new-task" className="ml-4"><Button bsstyle="primary">Add new</Button></Link>
+            </div>
+          </div>
           {this.renderTasks(tasksToShow)}
           <nav aria-label="Pagination">
             <ReactPaginate

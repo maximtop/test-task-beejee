@@ -4,8 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Tasks from '../Tasks';
 import Login from '../Login';
 import Header from '../Header';
-
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import NewTask from '../NewTask';
 
 const tasks = [
   {
@@ -91,7 +90,8 @@ class App extends Component {
         </div>
         <Switch>
           <Route path="/" exact render={() => <Tasks tasks={tasks} />} />
-          <Route path="/login" exact component={Login} />
+          <Route path="/login" component={Login} />
+          <Route path="/new-task" component={NewTask} />
         </Switch>
       </div>
     );
