@@ -23,6 +23,7 @@
     "@babel/core": "^7.1.5",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-decorators": "^7.1.6",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
@@ -44,8 +45,7 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
-    "@babel/plugin-transform-runtime": "^7.1.0"
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -53,6 +53,8 @@
     "enzyme-adapter-react-16": "^1.7.0",
     "mobx": "^5.6.0",
     "mobx-react": "^5.3.6",
+    "path-browserify": "^1.0.0",
+    "pica": "^5.0.0",
     "react": "^16.6.1",
     "react-bootstrap": "^1.0.0-beta.3",
     "react-dom": "^16.6.1",

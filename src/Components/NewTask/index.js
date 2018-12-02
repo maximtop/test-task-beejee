@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Form from 'react-bootstrap/lib/Form';
+import { resizeImage } from '../../helpers/image';
 import store from '../../Store/TasksStore';
 
 import './styles.css';
@@ -13,13 +14,12 @@ export default class NewTask extends Component {
     image: '',
   };
 
-  handleChange = (event) => {
+  handleChange = async (event) => {
     const { files, id } = event.target;
-
-    // TODO handle image size, resize if size is bigger than expected
     if (id === 'image' && files) {
+      const file = await resizeImage(files[0]);
       this.setState({
-        [id]: files[0],
+        [id]: file,
       });
       return;
     }
