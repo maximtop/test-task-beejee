@@ -40,6 +40,7 @@ export default class NewTask extends Component {
       text: '',
       image: '',
     }));
+    this.props.history.push('/');
   };
 
   validateForm() {
