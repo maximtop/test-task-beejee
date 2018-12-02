@@ -2,26 +2,24 @@ import React, { Component } from 'react';
 import ReactPaginate from 'react-paginate';
 import Button from 'react-bootstrap/lib/Button';
 import { Link } from 'react-router-dom';
+import { observer } from 'mobx-react';
 import Task from '../Task';
+import store from '../../Stores/TasksStore';
 
-export default class Tasks extends Component {
-  state = {
-    offset: 0,
-    pageDisplayed: 3,
-  };
+@observer
+class Tasks extends Component {
 
   renderTasks = tasks => tasks.map(task => <Task task={task} key={task.id} />);
 
   handlePageClick = (data) => {
     const { selected } = data;
-    this.setState(() => ({ offset: selected }));
+    store.handleCurrentPage(selected);
   };
 
   render() {
-    const { tasks } = this.props;
-    const { pageDisplayed, offset } = this.state;
-    const tasksToShow = tasks.slice(offset * pageDisplayed, (offset + 1) * pageDisplayed);
-    const pageCount = tasks.length / 3;
+    const defaultPageRange = 3;
+    const tasksToShow = store.getTasks;
+    const pageCount = Number(store.totalTasks) / defaultPageRange;
     return (
       <div className="row">
         <div className="col">
@@ -32,14 +30,15 @@ export default class Tasks extends Component {
             </div>
           </div>
           {this.renderTasks(tasksToShow)}
+
           <nav aria-label="Pagination">
             <ReactPaginate
               previousLabel="prev"
               nextLabel="next"
               breakLabel="..."
               pageCount={pageCount}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={pageDisplayed}
+              marginPagesDisplayed={1}
+              pageRangeDisplayed={3}
               onPageChange={this.handlePageClick}
               containerClassName="pagination justify-content-center"
               activeClassName="active"
@@ -57,3 +56,5 @@ export default class Tasks extends Component {
     );
   }
 }
+
+export default Tasks;

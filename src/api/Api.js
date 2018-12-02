@@ -2,13 +2,23 @@ import axios from 'axios';
 
 export default class Api {
   DEVELOPER_KEY = 'maximtop';
-  BASE_URL = 'https://uxcandy.com/~shapoval/test-task-backend/';
+  BASE_URL = 'https://uxcandy.com/~shapoval/test-task-backend';
 
   async makeRequest(path, method = 'POST', config) {
-    const response = await axios({
-      url: `${this.BASE_URL}/${path}?developer=${this.DEVELOPER_KEY}`,
-      method,
+    const { params } = config;
+
+    const newConfig = {
       ...config,
+      params: {
+        ...params,
+        developer: this.DEVELOPER_KEY,
+      },
+    };
+
+    const response = await axios({
+      url: `${this.BASE_URL}/${path}`,
+      method,
+      ...newConfig,
     });
     return response.data;
   }
@@ -17,9 +27,14 @@ export default class Api {
   GET_TASKS = { path: '', method: 'GET' };
   CREATE_TASK = { path: 'create', method: 'POST' };
 
-  async getTasks() {
+  async getTasks(page) {
     const { path, method } = this.GET_TASKS;
-    return this.makeRequest(path, method);
+    const config = {
+      params: {
+        page,
+      },
+    };
+    return this.makeRequest(path, method, config);
   }
 
   async createTask(task) {

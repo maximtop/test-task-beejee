@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 import Form from 'react-bootstrap/lib/Form';
 import { resizeImage } from '../../helpers/image';
-import store from '../../Store/TasksStore';
+import store from '../../Stores/TasksStore';
 
 import './styles.css';
 

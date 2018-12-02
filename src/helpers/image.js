@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import Pica from 'pica';
-import path from 'path';
+import path from 'path-browserify';
 
 const MAX_WIDTH = 320;
 const MAX_HEIGHT = 240;

@@ -7,7 +7,7 @@ import Tasks from '../Tasks';
 import Login from '../Login';
 import Header from '../Header';
 import NewTask from '../NewTask';
-import store from '../../Store/TasksStore';
+import store from '../../Stores/TasksStore';
 
 @withRouter
 @observer
